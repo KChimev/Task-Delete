@@ -42,12 +42,7 @@ function selectMultiple(){
     let tableRows=document.querySelectorAll(".table-row")
     document.getElementById("select-multiple").setAttribute("disabled", "")
     for(let i=0;i<tableRows.length;i++){
-        let checkbox = document.createElement("input")
-        checkbox.setAttribute("type", "checkbox")
-        checkbox.setAttribute("onclick", "selectTask(event)")
-        checkbox.setAttribute("id", i)
-        document.getElementById("checkbox-container").appendChild(checkbox)
-        // tableRows[i].innerHTML=`<input id="${i}" type="checkbox" onclick="selectTask(event)""></input>`+tableRows[i].innerHTML
+        tableRows[i].innerHTML=`<input id="${i}" type="checkbox" onclick="selectTask(event)""></input>`+tableRows[i].innerHTML
     }
 }
 function selectTask(event){
@@ -66,7 +61,10 @@ function deleteMultiple(){
     for(let i=0;i<deleteArr.length;i++){
         deleteArr[i].remove()
     }
-    document.getElementById("checkbox-container").innerHTML=""
+    let tableRows=document.querySelectorAll(".table-row")
+    for(let i=0;i<tableRows.length;i++){
+        tableRows[i].removeChild(tableRows[i].firstChild)
+    }
     document.getElementById("delete-multiple").style.display="none"
     document.getElementById("select-multiple").removeAttribute("disabled", "")
 }
